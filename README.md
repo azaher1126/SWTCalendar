@@ -1,4 +1,4 @@
-# SWTCalender
+# SWTCalendar
 Calendar Widget for SWT 
 
 Documentation:
