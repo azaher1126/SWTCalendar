@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"com.ez.swtcalendar","l":"CalendarWidgit"},{"p":"com.ez.swtcalendar","l":"DaySelected"},{"p":"org.eclipse.wb.swt","l":"SWTResourceManager"}];updateSearchResults();
