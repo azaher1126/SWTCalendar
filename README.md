@@ -5,4 +5,4 @@ This widget is a Calendar View for SWT! To get started head to releases and down
 
 Documentation: https://azaher1126.github.io/SWTCalendar/
 
-Releases:
+Releases: Latest 0.0.2 https://github.com/azaher1126/SWTCalendar/releases
