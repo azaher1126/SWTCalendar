@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.ez.swtcalendar"},{"l":"org.eclipse.wb.swt"}];updateSearchResults();
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.ez.swtcalendar"}];updateSearchResults();
