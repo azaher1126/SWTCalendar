@@ -9,11 +9,10 @@ import java.util.HashMap;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.wb.swt.SWTResourceManager;
 
 
 class DayView extends Composite {
-	private final String[] dayNames = {"Sunday","Monday","Tuesday","Wednesday","Thursday","Friday", "Sturday"};
+	private final String[] dayNames = {"Sunday","Monday","Tuesday","Wednesday","Thursday","Friday", "Saturday"};
 	public final int height;
 	
 	private ArrayList<DaySelectedListener> listeners = new ArrayList<DaySelectedListener>();
@@ -23,14 +22,16 @@ class DayView extends Composite {
 	 * @param parent
 	 * @param style
 	 */
-	public DayView(Composite parent, int style, YearMonth thisMonth, HashMap<LocalDate,Integer> tasks) {
+	public DayView(Composite parent, int style, YearMonth thisMonth, HashMap<LocalDate,Integer> tasks, Settings settings) {
 		super(parent, style);
 		setLayout(null);
 		int row = 0;
 		for (int i = 0;i<7;i++) {
 			Label header = new Label(this,SWT.NONE);
 			header.setText(dayNames[i]);
-			header.setFont(SWTResourceManager.getFont("Gilroy Light", 10, SWT.NORMAL));
+			header.setFont(settings.getDayHeaderSettings().getFont());
+			header.setForeground(settings.getDayHeaderSettings().getTextColor());
+			header.setBackground(settings.getDayHeaderSettings().getBackground());
 			header.setAlignment(SWT.CENTER);
 			header.setBounds(i*80, 0, 80, 15);
 		}
@@ -41,7 +42,7 @@ class DayView extends Composite {
 			if (tasks.get(day) != null) {
 				numTasks = tasks.get(day);
 			}
-			DayWidgit dayView = new DayWidgit(this,SWT.BORDER,day, numTasks);
+			DayWidgit dayView = new DayWidgit(this,SWT.BORDER,day, numTasks, settings);
 			dayView.addMouseListener(new DayClickHandler(new Runnable() {
 				@Override
 				public void run() {
@@ -58,7 +59,9 @@ class DayView extends Composite {
 				dayView.setBounds((weekDay.getValue())*80, row*80+15, 80, 80);
 			}
 			if (weekDay.getValue() == 6) {
-				row++;
+				if (i < thisMonth.lengthOfMonth()) {
+					row++;
+				}
 			}
 		}
 		height = (row+1)*80+15;

@@ -6,7 +6,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 
 import org.eclipse.swt.SWT;
-import org.eclipse.wb.swt.SWTResourceManager;
 
 class DayWidgit extends Composite {
 
@@ -15,18 +14,21 @@ class DayWidgit extends Composite {
 	 * @param parent
 	 * @param style
 	 */
-	public DayWidgit(Composite parent, int style, LocalDate date, int numTasks) {
+	public DayWidgit(Composite parent, int style, LocalDate date, int numTasks, Settings settings) {
 		super(parent, style);
 
+		this.setBackground(settings.getDaySettings().getBackground());
+		
 		Label lblDayXx = new Label(this, SWT.NONE);
-		lblDayXx.setForeground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
-		lblDayXx.setBackground(SWTResourceManager.getColor(SWT.COLOR_WIDGET_BORDER));
-		lblDayXx.setFont(SWTResourceManager.getFont("Gilroy ExtraBold", 13, SWT.NORMAL));
+		lblDayXx.setForeground(settings.getDaySettings().getHeaderTextColor());
+		lblDayXx.setBackground(settings.getDaySettings().getHeaderBackground());
+		lblDayXx.setFont(settings.getDaySettings().getHeaderFont());
 		lblDayXx.setBounds(0, 0, 80, 23);
 		lblDayXx.setText("" + date.getDayOfMonth());
 		
 		Label tasks = new Label(this, 0);
-		tasks.setFont(SWTResourceManager.getFont("Gilroy Light", 10, SWT.NORMAL));
+		tasks.setFont(settings.getDaySettings().getTasksFont());
+		tasks.setForeground(settings.getDaySettings().getTaskTextColor());
 		tasks.setBounds(0, 27, 80, 23);
 		tasks.setText("" + numTasks + " Tasks");
 	}

@@ -13,17 +13,18 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.wb.swt.SWTResourceManager;
 
 public class CalendarWidgit extends Composite {
-	YearMonth thisMonth = YearMonth.now();
-	DayView dayView;
-	Label lblMonthYyy;
-	public int height;
+	private YearMonth thisMonth = YearMonth.now();
+	private DayView dayView;
+	private Label lblMonthYyy;
+	private int height;
 	private final ScrolledComposite comp;
 	private HashMap<LocalDate,Integer> tasks;
 	
-	public LocalDate selectedDay;
+	private Settings settings;
+	
+	private LocalDate selectedDay;
 	
 	private DaySelected listener = new DaySelected() {
 		@Override
@@ -38,19 +39,26 @@ public class CalendarWidgit extends Composite {
 	 * @param parent
 	 * @param style
 	 * @param tasks gives the number of tasks for each day.
+	 * @param settings color and font preferences.
 	 */
-	public CalendarWidgit(Composite parent, int style, HashMap<LocalDate,Integer> tasks) {
+	public CalendarWidgit(Composite parent, int style, HashMap<LocalDate, Integer> tasks, Settings settings) {
 		super(parent, style);
 		setLayout(null);
 		this.tasks = tasks;
 		
+		this.settings = settings;
+		
 		lblMonthYyy = new Label(this, SWT.NONE);
-		lblMonthYyy.setFont(SWTResourceManager.getFont("Gilroy ExtraBold", 11, SWT.NORMAL));
+		lblMonthYyy.setFont(settings.getHeaderSettings().getFont());
+		lblMonthYyy.setForeground(settings.getHeaderSettings().getTextColor());
+		lblMonthYyy.setBackground(settings.getHeaderSettings().getTextBackground());
 		lblMonthYyy.setAlignment(SWT.CENTER);
 		lblMonthYyy.setBounds(36, 3, 488, 15);
 		lblMonthYyy.setText(thisMonth.getMonth().toString() + " " + thisMonth.getYear());
 		
-		Button btnBack = new Button(this, SWT.NONE);
+		Button btnBack = new Button(this, settings.getHeaderSettings().getButtonStyle());
+		btnBack.setForeground(settings.getHeaderSettings().getButtonForeground());
+		btnBack.setBackground(settings.getHeaderSettings().getButtonBackground());
 		btnBack.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -60,7 +68,9 @@ public class CalendarWidgit extends Composite {
 		btnBack.setBounds(0, 0, 30, 20);
 		btnBack.setText("<");
 		
-		Button btnForward = new Button(this, SWT.NONE);
+		Button btnForward = new Button(this, settings.getHeaderSettings().getButtonStyle());
+		btnForward.setForeground(settings.getHeaderSettings().getButtonForeground());
+		btnForward.setBackground(settings.getHeaderSettings().getButtonBackground());
 		btnForward.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -70,7 +80,7 @@ public class CalendarWidgit extends Composite {
 		btnForward.setBounds(530, 0, 30, 20);
 		btnForward.setText(">");
 		comp = new ScrolledComposite(this, SWT.V_SCROLL);
-		dayView = new DayView(comp,SWT.NONE,thisMonth,tasksForMonth());
+		dayView = new DayView(comp,SWT.NONE,thisMonth,tasksForMonth(), settings);
 		dayView.addListener(listener);
 		dayView.setBounds(0, 0, 560, dayView.height);
 		comp.setBounds(8, 25, 560, dayView.height);
@@ -100,7 +110,7 @@ public class CalendarWidgit extends Composite {
 	
 	private void setDayView() {
 		dayView.dispose();
-		dayView = new DayView(comp,0,thisMonth,tasksForMonth());
+		dayView = new DayView(comp,0,thisMonth,tasksForMonth(), settings);
 		dayView.addListener(listener);
 		dayView.setBounds(0, 0, 560, dayView.height);
 		comp.setContent(dayView);
@@ -123,7 +133,24 @@ public class CalendarWidgit extends Composite {
 		this.tasks = tasks;
 		setDayView();
 	}
+	
+	public int getHeight() {
+		return height;
+	}
+	
+	public void setSettings(Settings settings) {
+		this.settings = settings;
+		setDayView();
+	}
 
+	public Settings getSettings() {
+		return this.settings;
+	}
+	
+	public LocalDate getSelectedDay() {
+		return this.selectedDay;
+	}
+	
 	@Override
 	protected void checkSubclass() {
 		// Disable the check that prevents subclassing of SWT components
