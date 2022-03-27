@@ -10,7 +10,6 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 
-
 class DayView extends Composite {
 	private final String[] dayNames = {"Sunday","Monday","Tuesday","Wednesday","Thursday","Friday", "Saturday"};
 	public final int height;
@@ -22,7 +21,7 @@ class DayView extends Composite {
 	 * @param parent
 	 * @param style
 	 */
-	public DayView(Composite parent, int style, YearMonth thisMonth, HashMap<LocalDate,Integer> tasks, Settings settings) {
+	DayView(Composite parent, int style, YearMonth thisMonth, HashMap<LocalDate,Integer> tasks, Settings settings) {
 		super(parent, style);
 		setLayout(null);
 		int row = 0;
@@ -42,7 +41,7 @@ class DayView extends Composite {
 			if (tasks.get(day) != null) {
 				numTasks = tasks.get(day);
 			}
-			DayWidgit dayView = new DayWidgit(this,SWT.BORDER,day, numTasks, settings);
+			DayWidget dayView = new DayWidget(this,SWT.BORDER,day, numTasks, settings);
 			dayView.addMouseListener(new DayClickHandler(new Runnable() {
 				@Override
 				public void run() {
@@ -72,7 +71,7 @@ class DayView extends Composite {
 		// Disable the check that prevents subclassing of SWT components
 	}
 	
-	public void addListener(DaySelectedListener listener) {
+	void addListener(DaySelectedListener listener) {
 		listeners.add(listener);
 	}
 
