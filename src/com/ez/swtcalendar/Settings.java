@@ -5,7 +5,7 @@ public class Settings {
 	private DayHeaderSettings dayHeaderSettings;
 	private DaySettings daySettings;
 	
-	Settings() {
+	public Settings() {
 		this.headerSettings = new HeaderSettings();
 		this.dayHeaderSettings = new DayHeaderSettings();
 		this.daySettings = new DaySettings();

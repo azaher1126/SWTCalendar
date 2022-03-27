@@ -50,7 +50,7 @@ public class Test {
 		shell.setText("SWT Application");
 		HashMap<LocalDate,Integer> tasks = new HashMap<>();
 		Settings settings = new Settings();
-		settings.getDaySettings().setHeaderBackground(SWTResourceManager.getColor(SWT.COLOR_BLUE));
+		settings.getDaySettings().setHeaderBackground(SWTResourceManager.getColor(SWT.COLOR_DARK_GRAY));
 		CalendarWidgit calendar = new CalendarWidgit(shell, 0, tasks, settings);
 		calendar.setBounds(0, 0, 560, calendar.getHeight());
 		
