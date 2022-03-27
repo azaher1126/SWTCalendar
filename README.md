@@ -60,7 +60,7 @@ To use this library go to releases, download the jar and import it into your pro
 
 To use the widgit with default settings do this:
 
-CalendarWidgit widgit = new CalendarWidgit(shell, SWT.NONE, new HashMap<LocalDate, Integer>(), new Settings());
+CalendarWidgit widgit = new CalendarWidget(shell, SWT.NONE, new HashMap<LocalDate, Integer>(), new Settings());
 widgit.setBounds(0, 0, 560, calendar.getHeight());
 
 
