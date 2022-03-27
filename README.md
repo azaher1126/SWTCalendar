@@ -23,7 +23,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-I was building a project and needed a calendar view and was surpised to find that there are no calendarviews for SWT. So I decided to make one!
+I was building a project and needed a calendar view and was surpised to find that there are no calendar views for SWT. So I decided to make one!
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -77,10 +77,6 @@ Ayman Zaher - [@azaher1126](https://twitter.com/azaher1126)
 Project Link: [https://github.com/azaher1126/SWTCalendar](https://github.com/azaher1126/SWTCalendar)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
