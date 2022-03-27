@@ -72,7 +72,7 @@ _For more examples, please refer to the [Documentation]( https://azaher1126.gith
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@your_twitter](https://twitter.com/azaher1126)
+Ayman Zaher - [@azaher1126](https://twitter.com/azaher1126)
 
 Project Link: [https://github.com/azaher1126/SWTCalendar](https://github.com/azaher1126/SWTCalendar)
 
